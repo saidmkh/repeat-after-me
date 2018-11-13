@@ -10,6 +10,8 @@ let title = document.querySelector('.title__value')
 let rand_colors = []
 let selected_colors = []
 
+document.documentElement.classList.add('can-touch')
+
 compareArrays = (arr1, arr2) => {
   if (arr1.length !== arr2.length) return false
 
