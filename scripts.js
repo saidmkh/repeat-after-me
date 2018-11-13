@@ -20,17 +20,6 @@ compareArrays = (arr1, arr2) => {
   return true
 }
 
-getRandomColors = (score) => {
-  rand_colors.push(COLOURS[Math.floor(Math.random() * COLOURS.length)])
-
-  return rand_colors
-}
-
-disableButton = () => {
-  setTimeout(() => {
-  }, rand_colors.length * 800);
-}
-
 onload = addOnClick = () => {
   blocks.forEach(Blocks => Blocks.addEventListener('click', () => {
     selected_colors.push(Blocks.id)
@@ -50,13 +39,12 @@ onload = addOnClick = () => {
       go_button.removeAttribute('disabled')
     }
   }, false))
-  console.log(rand_colors)
 }
 
 go_button.onclick = getBlocks = () => {
   go_button.setAttribute('disabled', true)
   title.innerHTML = 'Repeat after me'
-  getRandomColors(score)
+  rand_colors.push(COLOURS[Math.floor(Math.random() * COLOURS.length)])
 
   for (let i = 0; i < rand_colors.length; i++) {
     (() => {
@@ -68,7 +56,6 @@ go_button.onclick = getBlocks = () => {
       }, i * 800)
     })(i)
   }
-  disableButton()
 }
 
 
