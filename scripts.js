@@ -2,9 +2,10 @@ const COLOURS = ['black', 'orange', 'yellow', 'blue', 'green',
   'red', 'purple', 'cyan', 'white']
 
 const go_button = document.querySelector('.title-ready__btn')
-let blocks = document.querySelectorAll('.block--item')
+const blocks = document.querySelectorAll('.block--item')
 
-let score = document.querySelector('.score__value').innerHTML
+let score = document.querySelector('.score__value')
+let title = document.querySelector('.title__value')
 
 let rand_colors = []
 let selected_colors = []
@@ -20,16 +21,13 @@ compareArrays = (arr1, arr2) => {
 }
 
 getRandomColors = (score) => {
-  for (let i = 0; i < score + 1; i++) {
-    rand_colors.push(COLOURS[Math.floor(Math.random() * COLOURS.length)])
-  }
+  rand_colors.push(COLOURS[Math.floor(Math.random() * COLOURS.length)])
 
   return rand_colors
 }
 
 disableButton = () => {
   setTimeout(() => {
-    go_button.removeAttribute('disabled')
   }, rand_colors.length * 800);
 }
 
@@ -38,19 +36,26 @@ onload = addOnClick = () => {
     selected_colors.push(Blocks.id)
     if (selected_colors.length === rand_colors.length) {
       if (!compareArrays(selected_colors, rand_colors)) {
-        alert(false)
         selected_colors.length = 0
+        rand_colors.length = 0
+        score.innerHTML = 1
+        title.innerHTML = 'Try again'
+        go_button.removeAttribute('disabled')
         return false
       }
 
-      alert(true)
+      title.innerHTML = 'Good job! Do u wanna continue?'
+      score.innerHTML = +score.innerHTML + 1
       selected_colors.length = 0
+      go_button.removeAttribute('disabled')
     }
   }, false))
+  console.log(rand_colors)
 }
 
 go_button.onclick = getBlocks = () => {
   go_button.setAttribute('disabled', true)
+  title.innerHTML = 'Repeat after me'
   getRandomColors(score)
 
   for (let i = 0; i < rand_colors.length; i++) {
