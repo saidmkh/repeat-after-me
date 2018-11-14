@@ -14,7 +14,7 @@ body {
 }
 
 .disabled {
-  opacity: 0.6;
+  opacity: 0.9;
   pointer-events: none;
 }
 
