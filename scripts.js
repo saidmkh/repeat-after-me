@@ -60,7 +60,7 @@ onload = addOnClick = () => {
         return false
       }
 
-      title.innerHTML = 'Good job! Do u wanna continue?'
+      title.innerHTML = 'Good job! Continue?'
       score.innerHTML = +score.innerHTML + 1
       selected_colors.length = 0
       go_button.removeAttribute('disabled')
